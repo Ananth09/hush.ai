@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Infant Cry Classification</title>
+  <title>Infant Cry Classifier</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  
   <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -11,46 +15,184 @@
     integrity="sha384-GTVV+KvJb4GJ/a3m7P+mrA3wGOZcJO+HhV9gDAxaLfM6k05Nd3IcFbQmNk1jK8Vx"
     crossorigin="anonymous"
   >
+  
+  <!-- AOS CSS for Animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
+  <!-- Font Awesome for Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-dc6QNg23ZV0z+ELlUJxgP0mxK9+IdQoZT+9yX9+S+/eKkBSopN4PQz73wHIeNtUjJy0B1Xptx3Cj6dMDr4SeHg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-sm">
+    <div class="container">
       <a class="navbar-brand" href="#">Infant Cry Classifier</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#hero">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#upload">Get Started</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
-  <!-- Main Container -->
-  <div class="container my-5">
-    <!-- Upload Section -->
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <h3>Upload Cry Audio</h3>
-        <form id="audio-form">
-          <div class="mb-3">
-            <input class="form-control" type="file" id="audio-input" accept="audio/*" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Classify Cry</button>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <h3>Upload Video</h3>
-        <form id="video-form">
-          <div class="mb-3">
-            <input class="form-control" type="file" id="video-input" accept="video/*" required>
-          </div>
-          <button type="submit" class="btn btn-success">Predict Pain Level</button>
-        </form>
-      </div>
+  <!-- Hero Section -->
+  <section id="hero" class="d-flex align-items-center" style="background-image: url('assets/images/hero-bg.jpg'); background-size: cover; background-position: center; height: 100vh; position: relative;">
+    <div class="overlay"></div>
+    <div class="container text-center text-white" data-aos="fade-up">
+      <h1 class="display-4 fw-bold">Understanding Your Baby's Needs</h1>
+      <p class="lead mt-3">Classify infant cries and predict pain levels effortlessly.</p>
+      <a href="#upload" class="btn btn-lg btn-light mt-4">Get Started</a>
     </div>
+  </section>
 
-    <!-- Results Section -->
-    <div class="row" id="results">
-      <!-- Dynamic content will be inserted here -->
+  <!-- Features Section -->
+  <section id="features" class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="fw-bold">Features</h2>
+        <p class="text-muted">Comprehensive tools to help you understand your infant better.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="zoom-in">
+          <div class="card text-center h-100 shadow-sm">
+            <div class="card-body">
+              <i class="fas fa-music fa-3x text-primary mb-3"></i>
+              <h5 class="card-title">Cry Classification</h5>
+              <p class="card-text">Identify the type of cry your baby is making to address their specific needs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+          <div class="card text-center h-100 shadow-sm">
+            <div class="card-body">
+              <i class="fas fa-heartbeat fa-3x text-success mb-3"></i>
+              <h5 class="card-title">Pain Level Prediction</h5>
+              <p class="card-text">Assess your baby's pain levels accurately through video analysis.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+          <div class="card text-center h-100 shadow-sm">
+            <div class="card-body">
+              <i class="fas fa-chart-line fa-3x text-warning mb-3"></i>
+              <h5 class="card-title">Detailed Reports</h5>
+              <p class="card-text">Receive comprehensive reports to monitor your baby's well-being over time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Upload Section -->
+  <section id="upload" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="fw-bold">Get Started</h2>
+        <p class="text-muted">Upload your baby's cry audio or video to receive instant analysis.</p>
+      </div>
+      <div class="row g-4">
+        <!-- Upload Cry Audio -->
+        <div class="col-md-6" data-aos="fade-right">
+          <div class="card p-4 shadow-sm">
+            <h4 class="mb-3"><i class="fas fa-music text-primary me-2"></i>Upload Cry Audio</h4>
+            <form id="audio-form">
+              <div class="mb-3">
+                <input class="form-control" type="file" id="audio-input" accept="audio/*" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-upload me-2"></i>Classify Cry
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- Upload Video -->
+        <div class="col-md-6" data-aos="fade-left">
+          <div class="card p-4 shadow-sm">
+            <h4 class="mb-3"><i class="fas fa-video text-success me-2"></i>Upload Video</h4>
+            <form id="video-form">
+              <div class="mb-3">
+                <input class="form-control" type="file" id="video-input" accept="video/*" required>
+              </div>
+              <button type="submit" class="btn btn-success w-100">
+                <i class="fas fa-upload me-2"></i>Predict Pain Level
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div id="loading" class="text-center my-4" style="display: none;" data-aos="fade-in">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Processing your request...</p>
+      </div>
+
+      <!-- Results Section -->
+      <div class="row mt-5" id="results">
+        <!-- Dynamic content will be inserted here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-5 bg-light">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="fw-bold">About Us</h2>
+        <p class="text-muted">Committed to helping parents understand and respond to their infants' needs effectively.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6" data-aos="fade-right">
+          <img src="assets/images/about-image.jpg" class="img-fluid rounded shadow-sm" alt="About Us">
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+          <p>Our mission is to empower parents with tools that provide insights into their baby's cries and behaviors. By leveraging advanced machine learning models, we offer accurate classifications and predictions that can help alleviate parental stress and improve infant care.</p>
+          <p>Whether you're a new parent or an experienced caregiver, our platform is designed to make understanding your baby's needs easier and more intuitive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+      <p>&copy; 2024 Infant Cry Classifier. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
 
   <!-- Bootstrap JS Bundle -->
   <script
@@ -58,7 +200,20 @@
     integrity="sha384-PLgkgikxLXfGX1fE3A4B21Y7CJy34p7lu+MUMFU3rjqMXrjv6ROXncxkZzJoQn30"
     crossorigin="anonymous"
   ></script>
+  
+  <!-- AOS JS for Animations -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  
   <!-- Custom JS -->
   <script src="script.js"></script>
+
+  <!-- Initialize AOS -->
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+  </script>
 </body>
 </html>
