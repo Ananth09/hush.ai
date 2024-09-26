@@ -1,150 +1,110 @@
-// script.js
 
-// Replace these with your actual API endpoints
-const AUDIO_API_URL = 'https://your-api-domain.com/classify-cry';
-const VIDEO_API_URL = 'https://your-api-domain.com/predict-pain';
+// Define API URLs
+const AUDIO_API_URL = 'http://localhost:8000/classify-cry';
+const VIDEO_API_URL = 'http://localhost:8000/predict-pain';
 
-// Elements
+// Get references to HTML elements
 const audioForm = document.getElementById('audio-form');
 const videoForm = document.getElementById('video-form');
-const resultsContainer = document.getElementById('results');
-const loadingIndicator = document.getElementById('loading');
+const audioInput = document.getElementById('audio-input');
+const videoInput = document.getElementById('video-input');
+const resultsDiv = document.getElementById('results');
+const loadingDiv = document.getElementById('loading');
 
-// Handle Audio Form Submission
-audioForm.addEventListener('submit', async function(event) {
+// Function to handle audio form submission
+audioForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  
-  const audioInput = document.getElementById('audio-input').files[0];
-  if (!audioInput) {
+
+  const file = audioInput.files[0];
+  if (!file) {
     alert('Please select an audio file.');
     return;
   }
 
-  const formData = new FormData();
-  formData.append('file', audioInput);
-
-  // Show loading
-  showLoading(true);
+  loadingDiv.classList.remove('hidden');
+  resultsDiv.innerHTML = '';
 
   try {
+    const formData = new FormData();
+    formData.append('file', file);
+
     const response = await fetch(AUDIO_API_URL, {
       method: 'POST',
-      body: formData
+      body: formData,
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Failed to classify cry.');
-    }
+    const data = await response.json();
+    loadingDiv.classList.add('hidden');
 
-    const result = await response.json();
-    displayResult('Cry Classification', result.classification, 'audio');
+    // Display classification result and recommendations
+    resultsDiv.innerHTML = `
+      <h3 class="text-xl font-semibold mb-2">Cry Classification</h3>
+      <p>Type of Cry: ${data.classification}</p>
+      <p>Recommendation: ${formatRecommendation(data.recommendations)}</p>
+    `;
   } catch (error) {
+    loadingDiv.classList.add('hidden');
     console.error('Error:', error);
-    displayError(error.message);
-  } finally {
-    // Hide loading
-    showLoading(false);
+    resultsDiv.innerHTML = '<p class="text-red-500">An error occurred. Please try again.</p>';
   }
 });
 
-// Handle Video Form Submission
-videoForm.addEventListener('submit', async function(event) {
+// Function to handle video form submission
+videoForm.addEventListener('submit', async (event) => {
   event.preventDefault();
-  
-  const videoInput = document.getElementById('video-input').files[0];
-  if (!videoInput) {
+
+  const file = videoInput.files[0];
+  if (!file) {
     alert('Please select a video file.');
     return;
   }
 
-  const formData = new FormData();
-  formData.append('file', videoInput);
-
-  // Show loading
-  showLoading(true);
+  loadingDiv.classList.remove('hidden');
+  resultsDiv.innerHTML = '';
 
   try {
+    const formData = new FormData();
+    formData.append('file', file);
+
     const response = await fetch(VIDEO_API_URL, {
       method: 'POST',
-      body: formData
+      body: formData,
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Failed to predict pain level.');
-    }
+    const data = await response.json();
+    loadingDiv.classList.add('hidden');
 
-    const result = await response.json();
-    displayResult('Pain Level Prediction', result.pain_level, 'video');
+    // Display pain prediction result and recommendations
+    resultsDiv.innerHTML = `
+      <h3 class="text-xl font-semibold mb-2">Pain Level Prediction</h3>
+      <p>Pain Level: ${data.painLevel}</p>
+      <p>Recommendation: ${data.recommendation || 'No recommendation available.'}</p>
+    `;
   } catch (error) {
+    loadingDiv.classList.add('hidden');
     console.error('Error:', error);
-    displayError(error.message);
-  } finally {
-    // Hide loading
-    showLoading(false);
+    resultsDiv.innerHTML = '<p class="text-red-500">An error occurred. Please try again.</p>';
   }
 });
 
-// Function to Show/Hide Loading Indicator
-function showLoading(isLoading) {
-  loadingIndicator.style.display = isLoading ? 'block' : 'none';
-}
-
-// Function to Display Results
-function displayResult(title, data, type) {
-  // Create a new card
-  const col = document.createElement('div');
-  col.className = 'col-md-6 mb-4';
-  col.innerHTML = `
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <h5 class="card-title">${title}</h5>
-        <p class="card-text">${formatResult(data, type)}</p>
-        <button class="btn btn-outline-primary btn-sm" onclick="copyResult('${encodeURIComponent(formatResult(data, type))}')">
-          <i class="fas fa-copy"></i> Copy
-        </button>
-      </div>
-    </div>
-  `;
-
-  // Append the card to the results container
-  resultsContainer.prepend(col);
-}
-
-// Function to Format Result Data
-function formatResult(data, type) {
-  if (type === 'audio') {
-    // Assuming classification is a string indicating the cry type
-    return `<strong>Detected Cry Type:</strong> ${data}`;
-  } else if (type === 'video') {
-    // Assuming pain_level is a string or number indicating pain level
-    return `<strong>Predicted Pain Level:</strong> ${data}`;
+// Function to format the recommendation
+function formatRecommendation(recommendation) {
+  if (typeof recommendation === 'object') {
+    if (recommendation.causes && recommendation.actions) {
+      const causes = recommendation.causes.map(cause => `<li>${cause}</li>`).join('');
+      const actions = recommendation.actions.map(action => `<li>${action}</li>`).join('');
+      
+      return `
+        <div>
+          <h4 class="font-semibold">Causes:</h4>
+          <ul class="list-disc pl-5">${causes}</ul>
+          <h4 class="font-semibold mt-2">Actions:</h4>
+          <ul class="list-disc pl-5">${actions}</ul>
+        </div>
+      `;
+    }
+    return JSON.stringify(recommendation); // Fallback if the structure is different
   }
-  return JSON.stringify(data);
+  return recommendation || 'No recommendation available.';
 }
 
-// Function to Display Error Messages
-function displayError(message) {
-  const col = document.createElement('div');
-  col.className = 'col-12 mb-4';
-  col.innerHTML = `
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>Error:</strong> ${message}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-  `;
-  resultsContainer.prepend(col);
-}
-
-// Function to Copy Result to Clipboard
-function copyResult(text) {
-  const decodedText = decodeURIComponent(text);
-  navigator.clipboard.writeText(decodedText)
-    .then(() => {
-      alert('Result copied to clipboard!');
-    })
-    .catch(err => {
-      console.error('Could not copy text: ', err);
-    });
-}

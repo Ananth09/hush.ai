@@ -118,3 +118,10 @@ footer .social-icons a:hover {
     margin-top: 0.5rem;
   }
 }
+  .bg-feature-background {
+    background-color: #1e45a1;
+    /* Or if you want an image background */
+    /* background-image: url('path/to/your/background-image.jpg'); */
+    /* background-size: cover; */
+    /* background-position: center; */
+  }
