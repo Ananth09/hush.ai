@@ -13,7 +13,7 @@ const loadingDiv = document.getElementById('loading');
 
 // Function to handle audio form submission
 audioForm.addEventListener('submit', async (event) => {
-  event.preventDefault();
+  event.preventDefault(); 
 
   const file = audioInput.files[0];
   if (!file) {
