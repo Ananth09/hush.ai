@@ -38,9 +38,9 @@ audioForm.addEventListener('submit', async (event) => {
 
     // Display classification result and recommendations
     resultsDiv.innerHTML = `
-      <h3 class="text-xl font-semibold mb-2">Cry Classification</h3>
-      <p>Type of Cry: ${data.classification}</p>
-      <p>Recommendation: ${formatRecommendation(data.recommendations)}</p>
+      <h3 class="text-xl font-semibold mb-2 text-white">Cry Classification</h3>
+      <p style="font-size: 24px; font-weight: bold; color: white">Type of Cry: ${data.classification}</p>
+      <p style="font-size: 21px; font-weight: bold; color: white">Recommendation: ${formatRecommendation(data.recommendations)}</p>
     `;
   } catch (error) {
     loadingDiv.classList.add('hidden');
@@ -76,9 +76,9 @@ videoForm.addEventListener('submit', async (event) => {
 
     // Display pain prediction result and recommendations
     resultsDiv.innerHTML = `
-      <h3 class="text-xl font-semibold mb-2">Pain Level Prediction</h3>
-      <p>Pain Level: ${data.painLevel}</p>
-      <p>Recommendation: ${data.recommendation || 'No recommendation available.'}</p>
+      <h3 class="text-xl font-semibold mb-2 text-white">Pain Level Prediction</h3>
+      <p style="font-size: 24px; font-weight: bold; color: white">Pain Level: ${data.pain_level}</p>
+      <p style="font-size: 21px; font-weight: bold; color: white">Recommendation: ${formatRecommendation(data.recommendations)}</p>
     `;
   } catch (error) {
     loadingDiv.classList.add('hidden');
@@ -96,10 +96,10 @@ function formatRecommendation(recommendation) {
       
       return `
         <div>
-          <h4 class="font-semibold">Causes:</h4>
-          <ul class="list-disc pl-5">${causes}</ul>
-          <h4 class="font-semibold mt-2">Actions:</h4>
-          <ul class="list-disc pl-5">${actions}</ul>
+          <h4 class="font-semibold text-white">Causes:</h4>
+          <ul class="list-disc pl-5 text-white">${causes}</ul>
+          <h4 class="font-semibold mt-2 text-white">Actions:</h4>
+          <ul class="list-disc pl-5 text-white">${actions}</ul>
         </div>
       `;
     }

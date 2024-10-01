@@ -125,3 +125,19 @@ footer .social-icons a:hover {
     /* background-size: cover; */
     /* background-position: center; */
   }
+
+  .pulse-image {
+    animation: pulse 1s infinite; /* Adjust duration as needed */
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1); /* Original size */
+    }
+    50% {
+      transform: scale(1.2); /* Scale to 1.2x size */
+    }
+  }
+  
+  
+  
