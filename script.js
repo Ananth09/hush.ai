@@ -39,8 +39,8 @@ audioForm.addEventListener('submit', async (event) => {
     // Display classification result and recommendations
     resultsDiv.innerHTML = `
       <h3 class="text-xl font-semibold mb-2 text-white">Cry Classification</h3>
-      <p style="font-size: 24px; font-weight: bold; color: white">Type of Cry: ${data.classification}</p>
-      <p style="font-size: 21px; font-weight: bold; color: white">Recommendation: ${formatRecommendation(data.recommendations)}</p>
+      <p style="font-size: 24px; font-weight: bold; color: black">Type of Cry: ${data.classification}</p>
+      <p style="font-size: 21px; font-weight: bold; color: black">Recommendation: ${formatRecommendation(data.recommendations)}</p>
     `;
   } catch (error) {
     loadingDiv.classList.add('hidden');
@@ -77,8 +77,8 @@ videoForm.addEventListener('submit', async (event) => {
     // Display pain prediction result and recommendations
     resultsDiv.innerHTML = `
       <h3 class="text-xl font-semibold mb-2 text-white">Pain Level Prediction</h3>
-      <p style="font-size: 24px; font-weight: bold; color: white">Pain Level: ${data.pain_level}</p>
-      <p style="font-size: 21px; font-weight: bold; color: white">Recommendation: ${formatRecommendation(data.recommendations)}</p>
+      <p style="font-size: 24px; font-weight: bold; color: black">Pain Level: ${data.pain_level}</p>
+      <p style="font-size: 21px; font-weight: bold; color: black">Recommendation: ${formatRecommendation(data.recommendations)}</p>
     `;
   } catch (error) {
     loadingDiv.classList.add('hidden');
