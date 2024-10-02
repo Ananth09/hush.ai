@@ -1,7 +1,9 @@
 
 // Define API URLs
-const AUDIO_API_URL = 'http://localhost:8000/classify-cry';
-const VIDEO_API_URL = 'http://localhost:8000/predict-pain';
+// const AUDIO_API_URL = 'http://localhost:8000/classify-cry';
+// const VIDEO_API_URL = 'http://localhost:8000/predict-pain';
+const AUDIO_API_URL = 'https://hushai.onrender.com/classify-cry';
+const VIDEO_API_URL = 'https://hushai.onrender.com/predict-pain';
 
 // Get references to HTML elements
 const audioForm = document.getElementById('audio-form');
