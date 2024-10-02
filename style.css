@@ -1,11 +1,9 @@
-/* styles.css */
+/* styles.css
 
 /* Global Styles */
 body {
   font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
-  margin: 0; /* Ensure no default margin */
-  padding: 0; /* Ensure no default padding */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,21 +29,11 @@ p {
   color: #ffc107 !important;
 }
 
-/* Section Backgrounds */
-section {
-  width: 100%; /* Ensure sections take full width */
-  background-color: #1e45a1; /* Change this to your desired background color */
-}
-
 /* Hero Section */
 #hero {
   position: relative;
   color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  min-height: 100vh; /* Ensure full height */
-  display: flex; /* Use flex for centering */
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 #hero .overlay {
@@ -63,10 +51,6 @@ section {
 }
 
 /* Features Section */
-#features {
-  min-height: 100vh; /* Ensure full height */
-}
-
 #features .card {
   border: none;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -74,14 +58,10 @@ section {
 
 #features .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
 }
 
 /* Upload Section */
-#upload {
-  min-height: 100vh; /* Ensure full height */
-}
-
 #upload .card {
   border: none;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -89,7 +69,7 @@ section {
 
 #upload .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 #upload .btn {
@@ -97,10 +77,6 @@ section {
 }
 
 /* Results Section */
-#results {
-  min-height: 100vh; /* Ensure full height */
-}
-
 #results .card {
   border: none;
   border-left: 5px solid #0d6efd;
@@ -109,7 +85,7 @@ section {
 
 #results .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 /* Footer */
@@ -134,7 +110,6 @@ footer .social-icons a:hover {
   }
 
   .navbar-nav {
-    flex-direction: column; /* Stack navbar items vertically on small screens */
     text-align: center;
   }
 
@@ -142,38 +117,18 @@ footer .social-icons a:hover {
     margin-left: 0;
     margin-top: 0.5rem;
   }
-
-  #hero .container {
-    padding: 1rem; /* Add padding for small screens */
-  }
-
-  /* Make cards full width on small screens */
-  #features .card,
-  #upload .card,
-  #results .card {
-    width: 100%;
-    margin: 0.5rem 0; /* Add margin for spacing */
-  }
 }
 
-/* Background Animation */
-.bg-feature-background {
-  background-color: #1e45a1;
-  /* Or if you want an image background */
-  /* background-image: url('path/to/your/background-image.jpg'); */
-  /* background-size: cover; */
-  /* background-position: center; */
-}
 
-.pulse-image {
-  animation: pulse 1s infinite; /* Adjust duration as needed */
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1); /* Original size */
+  .pulse-image {
+    animation: pulse 1s infinite; /* Adjust duration as needed */
   }
-  50% {
-    transform: scale(1.2); /* Scale to 1.2x size */
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1); /* Original size */
+    }
+    50% {
+      transform: scale(1.2); /* Scale to 1.2x size */
+    }
   }
-}
