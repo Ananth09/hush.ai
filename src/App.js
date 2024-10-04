@@ -12,11 +12,15 @@ const [error, setError] = useState(null);
 const AUDIO_API_URL = 'https://hushai.onrender.com/classify-cry';
 const VIDEO_API_URL = 'https://hushai.onrender.com/predict-pain';
 
+const audioForm = document.getElementById('audio-form');
+const videoForm = document.getElementById('video-form');
+const audioInput = document.getElementById('audio-input);
+const videoInput = document.getElementById('video input);
 // Function to handle audio form submission
 const handleAudioSubmit = async (event) => {
   event.preventDefault();
 
-  const file = event.target[0].files[0];
+  const file = event.target.elements.audioInput.files[0];  // Access file from 'audio-input'
   if (!file) {
     alert('Please select an audio file.');
     return;
@@ -54,7 +58,7 @@ const handleAudioSubmit = async (event) => {
 const handleVideoSubmit = async (event) => {
   event.preventDefault();
 
-  const file = event.target[0].files[0];
+  const file = event.target.elements.videoInput.files[0];  // Access file from 'video-input'
   if (!file) {
     alert('Please select a video file.');
     return;
