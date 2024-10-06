@@ -15,7 +15,7 @@ const VIDEO_API_URL = 'https://hushai.onrender.com/predict-pain';
 const audioForm = document.getElementById('audio-form');
 const videoForm = document.getElementById('video-form');
 const audioInput = document.getElementById('audio-input');
-const videoInput = document.getElementById('video input');
+const videoInput = document.getElementById('video-input');
 // Function to handle audio form submission
 const handleAudioSubmit = async (event) => {
   event.preventDefault();
