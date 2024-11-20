@@ -264,16 +264,36 @@ function formatRecommendation(recommendation) {
           {loading && <p className="text-blue-600">Analyzing the audio...</p>}
           {error && <p className="text-red-600">{error}</p>}
           {results && (
-            <div className="mt-6 bg-white p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-semibold mb-4 text-blue-600">{results.title}</h3>
-              <p className="mb-2">{results.classification}</p>
-              <ul className="list-disc pl-5">
-                {results.recommendation.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+            <div>
+              <h2 className="text-lg font-bold">{results.title}</h2>
+              <p>{results.classification}</p>
+              
+              {/* Display Causes */}
+              {results.recommendation?.causes && (
+                <>
+                  <h3 className="font-semibold mt-4">Possible Causes:</h3>
+                  <ul className="list-disc list-inside">
+                    {results.recommendation.causes.map((cause, index) => (
+                      <li key={index}>{cause}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+          
+              {/* Display Actions */}
+              {results.recommendation?.actions && (
+                <>
+                  <h3 className="font-semibold mt-4">Recommended Actions:</h3>
+                  <ul className="list-disc list-inside">
+                    {results.recommendation.actions.map((action, index) => (
+                      <li key={index}>{action}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
           )}
+
         </div>
       </section>
 
