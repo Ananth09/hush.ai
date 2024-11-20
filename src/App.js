@@ -258,6 +258,25 @@ function formatRecommendation(recommendation) {
         </div>
       </section>
 
+      {/* Results Section */}
+      <section id="results" className="py-8">
+        <div className="container mx-auto px-6">
+          {loading && <p className="text-blue-600">Analyzing the audio...</p>}
+          {error && <p className="text-red-600">{error}</p>}
+          {results && (
+            <div className="mt-6 bg-white p-6 rounded-lg shadow-lg">
+              <h3 className="text-2xl font-semibold mb-4 text-blue-600">{results.title}</h3>
+              <p className="mb-2">{results.classification}</p>
+              <ul className="list-disc pl-5">
+                {results.recommendation.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* About Section */}
       <section id="about" className="py-20 bg-gradient-to-b from-pink-200 to-yellow-100">
         <div className="container mx-auto px-6">
