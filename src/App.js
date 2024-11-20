@@ -269,11 +269,11 @@ function formatRecommendation(recommendation) {
               <p>{results.classification}</p>
               
               {/* Display Causes */}
-              {results.recommendation?.causes && (
+              {results.recommendations?.causes && (
                 <>
                   <h3 className="font-semibold mt-4">Possible Causes:</h3>
                   <ul className="list-disc list-inside">
-                    {results.recommendation.causes.map((cause, index) => (
+                    {results.recommendations.causes.map((cause, index) => (
                       <li key={index}>{cause}</li>
                     ))}
                   </ul>
@@ -281,11 +281,11 @@ function formatRecommendation(recommendation) {
               )}
           
               {/* Display Actions */}
-              {results.recommendation?.actions && (
+              {results.recommendations?.actions && (
                 <>
                   <h3 className="font-semibold mt-4">Recommended Actions:</h3>
                   <ul className="list-disc list-inside">
-                    {results.recommendation.actions.map((action, index) => (
+                    {results.recommendations.actions.map((action, index) => (
                       <li key={index}>{action}</li>
                     ))}
                   </ul>
