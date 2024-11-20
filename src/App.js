@@ -264,36 +264,25 @@ function formatRecommendation(recommendation) {
           {loading && <p className="text-blue-600">Analyzing the audio...</p>}
           {error && <p className="text-red-600">{error}</p>}
           {results && (
-            <div>
-              <h2 className="text-lg font-bold">{results.title}</h2>
-              <p>{results.classification}</p>
-              
-              {/* Display Causes */}
-              {results.recommendations?.causes && (
-                <>
-                  <h3 className="font-semibold mt-4">Possible Causes:</h3>
-                  <ul className="list-disc list-inside">
-                    {results.recommendations.causes.map((cause, index) => (
-                      <li key={index}>{cause}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
+            <div className="mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
+              {/* Title */}
+              <h3 className="text-xl font-bold text-blue-600 mb-4">{results.title}</h3>
           
-              {/* Display Actions */}
-              {results.recommendations?.actions && (
-                <>
-                  <h3 className="font-semibold mt-4">Recommended Actions:</h3>
-                  <ul className="list-disc list-inside">
-                    {results.recommendations.actions.map((action, index) => (
-                      <li key={index}>{action}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
+              {/* Classification */}
+              <p className="text-gray-700 mb-4">
+                <strong>Classification:</strong> {results.classification}
+              </p>
+          
+              {/* Recommendations */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Recommendations:</h4>
+                <div
+                  className="text-gray-700"
+                  dangerouslySetInnerHTML={{ __html: results.recommendation }}
+                ></div>
+              </div>
             </div>
-          )}
-
+              )}
         </div>
       </section>
 
