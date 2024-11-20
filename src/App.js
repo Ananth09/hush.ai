@@ -92,14 +92,14 @@ const handleVideoSubmit = async (event) => {
 function formatRecommendation(recommendation) {
   if (typeof recommendation === 'object') {
     if (recommendation.causes && recommendation.actions) {
-      const causes = recommendation.causes.map((cause) => `<li>${cause}</li>`).join('');
-      const actions = recommendation.actions.map((action) => `<li>${action}</li>`).join('');
+      const causes = recommendation.causes.map((cause) => `<li class="list-disc ml-6">${cause}</li>`).join('');
+      const actions = recommendation.actions.map((action) => `<li class="list-disc ml-6">${action}</li>`).join('');
 
       return `
         <div>
-          <h4>Causes:</h4>
+          <h4 class="font-semibold mt-2">Causes:</h4>
           <ul>${causes}</ul>
-          <h4>Actions:</h4>
+          <h4 class="font-semibold mt-4">Actions:</h4>
           <ul>${actions}</ul>
         </div>
       `;
@@ -108,6 +108,7 @@ function formatRecommendation(recommendation) {
   }
   return recommendation || 'No recommendation available.';
 }
+
 
   return (
     <div className="App">
@@ -261,30 +262,35 @@ function formatRecommendation(recommendation) {
       {/* Results Section */}
       <section id="results" className="py-8">
         <div className="container mx-auto px-6">
+          {/* Loading State */}
           {loading && <p className="text-blue-600">Analyzing the audio...</p>}
+      
+          {/* Error State */}
           {error && <p className="text-red-600">{error}</p>}
+      
+          {/* Results Section */}
           {results && (
             <div className="mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
               {/* Title */}
               <h3 className="text-xl font-bold text-blue-600 mb-4">{results.title}</h3>
-          
+      
               {/* Classification */}
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-800 mb-2">
                 <strong>Classification:</strong> {results.classification}
               </p>
-          
+      
               {/* Recommendations */}
               <div>
                 <h4 className="text-lg font-semibold text-gray-800 mb-2">Recommendations:</h4>
-                <div
-                  className="text-gray-700"
-                  dangerouslySetInnerHTML={{ __html: results.recommendation }}
-                ></div>
+                <div className="text-gray-700">
+                  <div dangerouslySetInnerHTML={{ __html: results.recommendation }}></div>
+                </div>
               </div>
             </div>
-              )}
+          )}
         </div>
       </section>
+
 
       {/* About Section */}
       <section id="about" className="py-20 bg-gradient-to-b from-pink-200 to-yellow-100">
